@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ludo.css">
+  </head>
+  <body>
+
+    <!-- The start menu -->
+    <div id="menu">
+      <h1 id="title">LUDO</h1>
+
+      <button id="startGameButton" onclick="theGame()">Start Game</button>
+
+      <button id="instructionsButton" onclick="displayInstructions()">Guide Lines</button>
+
+      <button id="demoButton" onclick="displayDemo()">Demo</button>
+
+      <button id="savedGamesButton" onclick="displaySavedGames()">Saved Games</button>
+
+      <button id="settingsButton" onclick="displaySettings()">Settings</button>
+
+    </div>
+
+    <!-- The game -->
+    <div id="ludo_game" >
+      <canvas id="boardCanvas"  width="600" height="600"></canvas>
+      <script src="ludo.js" charset="utf-8"></script>
+
+      <div class="winner">
+        <h1 id="winner">The winner</h1>
+        <button id="exitGame" onclick="exitGame()">Exit Game</button>
+      </div>
+
+      <div class="players">
+        <div class="players_panel">
+          <h1 id="red"><div id="rTile"></div>Player 1</h2>
+          <h1 id="green"><div id="gTile"></div>Player 2</h2>
+          <h1 id="yellow"><div id="yTile"></div>Player 3</h2>
+          <h1 id="blue"><div id="bTile"></div>Player 4</h2>
+        </div>
+
+        <div class="dice_panel">
+          <div class="firstDie">
+            <img id="die1" src="Images/1.jpg">
+          </div>
+
+          <div class="secondDie">
+            <img id="die2" src="Images/1.jpg">
+          </div>
+
+          <div class="button_container">
+            <button id="diceRoll">Roll Dice</button>
+          </div>
+
+        </div>
+        <div class="menuOptions">
+          <button id="saveGame" >Save Game</button>
+          <button id="exitGameOption" >Exit Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Game -->
+    <div id="saveGameBox">
+      <h1 id="title">Save Game</h1>
+      <h2>Game Name:</h2>
+      <input placeholder="Game Name" id="gameName">
+      <h3 id="sgErrorMsg"></h3>
+      <button id="set" onclick="saveGame()">Save</button>
+      <button id="resumeGame" onclick="resumeGame('saveGameBox')">Resume Game</button>
+      <button id="exitGameOption" >Exit Game</button>
+    </div>
+
+    <!-- Exit Game Menu -->
+    <div id="exitGameBox">
+      <h1 id="title">Exit Game</h1>
+      <h2>Are you sure?</h2>
+      <button id="exitGame" onclick="exitGame()">Yes</button>
+      <button id="resumeGame" onclick="resumeGame('exitGameBox')">No</button>
+    </div>
+
+    <!-- The guidelines of the game -->
+    <div id="instructions">
+      <h1 id="title">Guide Lines</h1>
+      <div class="instr1">
+        <h2>Player order</h2>
+        <h3>1. First player: Red, Second Player: Green, Third Player: Yellow, Fourth Player: Blue</h3>
+        <h2>How To Play</h2>
+        <h3>1. Roll Dice</h3>
+        <h3>2. If none of the dice are 6 then turn is passed if no piece has been brought out yet</h3>
+        <h3>2.1 However if a piece has already been brought out then a move can be made</h3>
+        <h3>3. If your piece lands on a spot already occupied by your opponent the opponent is captured and sent back to their base</h3>
+        <h3>4. The winner is the first person to get four pieces to their home</h3>
+      </div>
+      <div class="instr2">
+        <h2>How to make a move</h2>
+        <h3>1. After dice has been rolled and current player can make a move, you click on the die that you want to make use of for the move</h3>
+        <h3>2. After a die has been used it cannot be revisited</h3>
+        <h3>3. You have to use both die if they are usable</h3>
+      </div>
+
+
+      <button id="mainMenu" onclick="mainMenu('instructions')">Main Menu</button>
+    </div>
+
+    <!-- The automated demo showing how the game is to be played -->
+    <!-- <div id="demo"> -->
+      <!-- <canvas id="boardCanvas"  width="600" height="600"></canvas>
+      <div class="dice_panel">
+        <div class="firstDie">
+          <img id="die1" src="Images/1.jpg">
+        </div>
+
+        <div class="secondDie">
+          <img id="die2" src="Images/1.jpg">
+        </div>
+
+        <div class="button_container">
+          <button id="diceRoll" onclick="rollDice()">Roll Dice</button>
+        </div>
+      </div> -->
+      <!-- <button id="mainMenu" onclick="mainMenu('demo')">Main Menu</button>
+    </div> -->
+
+    <!-- Saved Games of the users of the game -->
+    <!-- <div id="saved_games">
+      <h1 id="title">Saved Games</h1>
+      <button id="mainMenu" onclick="mainMenu('saved_games')">Main Menu</button>
+    </div> -->
+
+    <!-- The settings -->
+    <div id="settings">
+      <h1 id="title">Settings</h1>
+      <h3 class="setLabel">Set Dice Roll Time (seconds):</h3>
+      <input placeholder="Set Time in seconds" id="diceRollTime">
+      <h3 id="errorMsg"></h3>
+      <button id="set" onclick="setTime()">Set</button>
+      <br>
+      <button id="mainMenu" onclick="mainMenu('settings')">Main Menu</button>
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,231 @@
+body{
+  margin: 20px 250px;
+  background-color: black;
+}
+#boardCanvas{
+  /* width:700px;
+  height:700px; */
+  /* margin: 0 auto; */
+  background-color: white;
+}
+
+#title{
+  font-family: 'Alfa Slab One', cursive;
+  text-align: center;
+  font-size: 50px;
+  /* font-weight: 400; */
+  color: red;
+}
+.board{
+  /* padding: 30px; */
+  width: 100%;
+  height: 700px;
+  background-color: #B18017;
+}
+.game_board{
+  padding: 30px;
+  width: 70%;
+  height: 600px;
+  background-color: #c08b5f;
+  border: solid;
+  border-width: 20px;
+  border-color: #722E15;
+  float: left;
+}
+.top_part{
+  height: 40%;
+  width: 100%;
+}
+.bottom_part{
+  height: 40%;
+}
+.greenbox,.redbox,.yellowbox,.bluebox{
+  border: solid;
+  border-width: thick;
+  width: 30%;
+  height: 80%;
+}
+.greenbox{
+  border-color: black;
+  background-color: green;
+  float: left;
+}
+.tilespath1,.tilespath3{
+  width: 20%;
+  height: 100%;
+  margin: 0 auto;
+  border-left: solid;
+  border-right: solid;
+  border-width: thick;
+  border-color: black;
+  background-color: white;
+}
+.tilespath1{
+  border-top: solid;
+  border-width: thick;
+}
+.tilespath3{
+  border-bottom: solid;
+  border-width: thick;
+}
+.yellowbox{
+  border-color: black;
+  background-color: yellow;
+  float: right;
+}
+.tilespath2{
+  width: 100%;
+  height: 20%;
+  border: solid;
+  border-width: thick;
+  border-color: black;
+  background-color: white;
+}
+.endpoint{
+  width: 20%;
+  height: 100%;
+  margin: 0 auto;
+  border-left: solid;
+  border-right: solid;
+  border-color: black;
+  border-width: thick;
+}
+.redbox{
+  border-color: black;
+  background-color: red;
+  float: left;
+  left: 0;
+  bottom: 0;
+  /* position: absolute; */
+}
+.bluebox{
+  border-color: black;
+  background-color: blue;
+  float: right;
+}
+.tilescontainer{
+  background-color: white;
+  margin: auto;
+  width: 75%;
+  height: 75%;
+}
+.redtile,.greentile,.yellowtile,.bluetile{
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  float: right;
+}
+.redtile{
+  background-color: red;
+  visibility: visible;
+  float: left;
+}
+.greentile{
+  background-color: green;
+  visibility: hidden;
+  float: left;
+}
+.yellowtile{
+  background-color: yellow;
+  visibility: hidden;
+  float: left;
+}
+.bluetile{
+  background-color: blue;
+  visibility: hidden;
+  float: left;
+}
+.players{
+  width: 20%;
+  float: right;
+}
+.players_panel{
+  padding: 30px;
+}
+.dice_panel{
+  padding: 20px;
+}
+h1{
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+  /* font-weight: 400; */
+  color: black;
+  text-align: right;
+}
+.rTile,.gTile,.yTile,.bTile{
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  float: right;
+}
+.rTile{
+  background-color: red;
+  visibility: visible;
+  float: left;
+}
+.gTile{
+  background-color: green;
+  visibility: hidden;
+  float: left;
+}
+.yTile{
+  background-color: yellow;
+  visibility: hidden;
+  float: left;
+}
+.bTile{
+  background-color: blue;
+  visibility: hidden;
+  float: left;
+}
+.die1{
+  float: left;
+  padding: 5px;
+}
+.die2{
+  float: right;
+  padding: 5px;
+}
+img{
+  width: 70px;
+  height: 70px;
+}
+#diceRoll{
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: #592e1d;
+}
+.button_container{
+  width: 100%;
+  text-align: center;
+}
+#red{
+
+}
+#green{
+
+}
+#yellow{
+
+}
+#blue{
+
+}
+.winner{
+  width: 20%;
+  position: absolute;
+  /* text-align: center; */
+  margin: auto;
+  /* visibility: hidden; */
+}
+/* #winner{
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+  visibility: hidden;
+} */

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Learning 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="learningJS.css">
+  </head>
+  <body>
+    <!-- <canvas id="gameCanvas" width="600" height="600"></canvas> -->
+
+    <script src="learningJS.js" charset="utf-8"></script>
+    <div id="menu">
+      <h1 id="title">LUDO</h1>
+
+      <button id="startGame" onclick="theGame()">Start Game</button>
+
+      <button id="instructions" onclick="displayInstructions()">Instructions</button>
+
+      <button id="demo" onclick="demo()">Demo</button>
+
+      <button id="savedGames" onclick="savedGames()">Saved Games</button>
+
+    </div>
+    <div id="ludo_game">
+      <canvas id="boardCanvas"  width="600" height="600"></canvas>
+    </div>
+    <div class="instructions">
+      <h1 id="title">Instructions</h1>
+    </div>
+    <div class="demo" style="visibility:hidden;">
+      <!-- <canvas id="boardCanvas"  width="600" height="600"></canvas>
+      <script src="learningJavascriptBoard.js" charset="utf-8"></script>
+      <div class="dice_panel">
+        <div class="firstDie">
+          <img id="die1" src="Images/1.jpg">
+        </div>
+
+        <div class="secondDie">
+          <img id="die2" src="Images/1.jpg">
+        </div>
+
+        <div class="button_container">
+          <button id="diceRoll" onclick="rollDice()">Roll Dice</button>
+        </div>
+      </div> -->
+    </div>
+    <div class="saved_games">
+
+    </div>
+    <!-- <div class="dice_panel">
+      <div class="firstDie">
+        <img id="die1" src="Images/1.jpg">
+      </div>
+
+      <div class="secondDie">
+        <img id="die2" src="Images/1.jpg">
+      </div>
+
+      <div class="button_container">
+        <button id="diceRoll" onclick="rollDice()">Roll Dice</button>
+      </div>
+    </div> -->
+  </body>
+</html>

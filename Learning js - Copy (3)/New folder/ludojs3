@@ -1,0 +1,525 @@
+// function setup(){
+//   createCanvas(400,400);
+//   // background(220);
+// }
+// function draw() {
+//   background(220);
+//   rect(0,160,20,40);
+//   rect(400,mouseY,20,40);
+//   square(190,190,10);
+// }
+(function () {
+  const canvas=document.getElementById('boardCanvas');
+  const ctx=canvas.getContext('2d');
+
+  //green base
+  var greenBase=(function() {
+    ctx.fillStyle="green";
+    ctx.fillRect(0,0,240,240);
+    //white part
+    ctx.fillStyle="white";
+    ctx.fillRect(40,40,160,160);
+
+    ctx.beginPath();
+    ctx.arc(87,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(153,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(87,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(153,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+  }());
+
+  //red base
+  var redBase=(function() {
+    ctx.fillStyle="red";
+    ctx.fillRect(0,360,240,240);
+    //white inner part
+    ctx.fillStyle="white";
+    ctx.fillRect(40,400,160,160);
+
+    ctx.beginPath();
+    ctx.arc(87,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(87,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(153,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(153,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+  }());
+
+  //yellow base
+  var yellowBase=(function() {
+    ctx.fillStyle="yellow";
+    ctx.fillRect(360,0,240,240);
+    //white part
+    ctx.fillStyle="white";
+    ctx.fillRect(400,40,160,160);
+
+    ctx.beginPath();
+    ctx.arc(447,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(513,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(447,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(513,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+  }());
+
+  //blue base
+  var blueBase=(function() {
+    ctx.fillStyle="blue";
+    ctx.fillRect(360,360,240,240);
+    //white part
+    ctx.fillStyle="white";
+    ctx.fillRect(400,400,160,160);
+
+    //blue tiles
+    ctx.beginPath();
+    ctx.arc(447,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(447,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(513,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(513,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+  }());
+
+  //the positions x and y for the tiles
+  var positionx;
+  var positiony;
+
+  //top tile path
+  var topTilePath=(function() {
+    ctx.fillStyle="white";
+    ctx.fillRect(240,0,120,240);
+    //fill the path with rectangles
+    positionx=240;
+    for (var x = 0; x < 3; x++) {
+      positiony=0;
+      for (var y = 0; y < 6; y++) {
+        if (x==1 && y>0) {
+          ctx.fillStyle="yellow";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else if (x==2 && y==1) {
+          ctx.fillStyle="yellow";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else {
+          ctx.rect(positionx,positiony,40,40);
+          ctx.stroke();
+        }
+        positiony+=40;
+      }
+      positionx+=40;
+    }
+  }());
+
+  //middle tile path-left
+  var middleTilePathLeft=(function() {
+    ctx.fillStyle="white";
+    ctx.fillRect(0,240,240,120);
+    //fill the path with rectangles
+    positionx=0;
+    for (var x = 0; x < 6; x++) {
+      positiony=240;
+      for (var y = 0; y < 3; y++) {
+        if (y==1 && x>0) {
+          ctx.fillStyle="green";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else if (x==1 && y==0) {
+          ctx.fillStyle="green";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else {
+          ctx.rect(positionx,positiony,40,40);
+          ctx.stroke();
+        }
+        positiony+=40;
+      }
+      positionx+=40;
+    }
+  }());
+
+  //middle path- winner's spot
+  //green home
+  var greenHome=(function() {
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.moveTo(300,300);
+    ctx.lineTo(240,240);
+    ctx.lineTo(240,360);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(260,300,10,0,2*Math.PI);
+    ctx.stroke();
+  }());
+
+  //red home
+  var redHome=(function() {
+    ctx.fillStyle='red';
+    ctx.beginPath();
+    ctx.moveTo(300,300);
+    ctx.lineTo(240,360);
+    ctx.lineTo(360,360);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(300,340,10,0,2*Math.PI);
+    ctx.stroke();
+  }());
+
+  //blue home
+  var blueHome=(function() {
+    ctx.fillStyle='blue';
+    ctx.beginPath();
+    ctx.moveTo(300,300);
+    ctx.lineTo(360,240);
+    ctx.lineTo(360,360);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(340,300,10,0,2*Math.PI);
+    ctx.stroke();
+  }());
+
+  //yellow home
+  var yellowHome=(function() {
+    ctx.fillStyle='yellow';
+    ctx.beginPath();
+    ctx.moveTo(300,300);
+    ctx.lineTo(240,240);
+    ctx.lineTo(360,240);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(300,260,10,0,2*Math.PI);
+    ctx.stroke();
+  }());
+
+
+  //middle tile path-right
+  var middleTilePathRight=(function() {
+    ctx.fillStyle="white";
+    ctx.fillRect(360,240,240,120);
+    //fill the path with rectangles
+    positionx=360;
+    for (var x = 0; x < 6; x++) {
+      positiony=240;
+      for (var y = 0; y < 3; y++) {
+        if (y==1 && x<5) {
+          ctx.fillStyle="blue";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else if (x==4 && y==2) {
+          ctx.fillStyle="blue";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else {
+          ctx.rect(positionx,positiony,40,40);
+          ctx.stroke();
+        }
+        positiony+=40;
+      }
+      positionx+=40;
+    }
+  }());
+
+
+  //bottom tile path
+  var bottomTilePath=(function() {
+    ctx.fillStyle="white";
+    ctx.fillRect(240,360,120,240);
+    //fill the path with rectangles
+    positionx=240;
+    for (var x = 0; x < 3; x++) {
+      positiony=360;
+      for (var y = 0; y < 6; y++) {
+        if (x==1 && y<5) {
+          ctx.fillStyle="red";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else if (x==0 && y==4) {
+          ctx.fillStyle="red";
+          ctx.fillRect(positionx,positiony,40,40);
+          ctx.stroke();
+        }else {
+          ctx.rect(positionx,positiony,40,40);
+          ctx.stroke();
+        }
+        positiony+=40;
+      }
+      positionx+=40;
+    }
+  }());
+
+
+  function LinkedList() {
+
+  }
+  function positionStorage( x,  y) {
+
+  }
+  //all the pieces
+  //green tiles
+  //linked list to store postions the green tiles have been to
+  //with the default position (base) being the head
+  var greenTilePositions1=[{x:87,y:87}];
+  // greenTilePositions1.p;
+  // greenTileP
+  function addPosition(x,y) {
+    var position={x,y}
+  }
+  function currentPosition(positionArray) {
+    var size=positionArray.length;
+    return size;
+  }
+  var greenTile1=(function() {
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.arc(greenTilePositions1[currentPosition(greenTilePositions1)].x,greenTilePositions1[currentPosition(greenTilePositions1)].y,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the green tiles have been to
+  //with the default position (base) being the head
+  var greenTile2Positions=new LinkedList();
+  var greenTile2=(function() {
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.arc(153,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the green tiles have been to
+  //with the default position (base) being the head
+  var greenTile3Positions=new LinkedList();
+  var greenTile3=(function() {
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.arc(87,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the green tiles have been to
+  //with the default position (base) being the head
+  var greenTile4Positions=new LinkedList();
+  var greenTile4=(function() {
+    ctx.fillStyle='green';
+    ctx.beginPath();
+    ctx.arc(153,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+
+  //red tiles
+  //linked list to store postions the red tiles have been to
+  //with the default position (base) being the head
+  var redTile1Positions=new LinkedList();
+  var redTile1=(function() {
+    ctx.fillStyle='red';
+    ctx.beginPath();
+    ctx.arc(87,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the red tiles have been to
+  //with the default position (base) being the head
+  var redTile2Positions=new LinkedList();
+  var redTile2=(function() {
+    ctx.fillStyle='red';
+    ctx.beginPath();
+    ctx.arc(87,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the red tiles have been to
+  //with the default position (base) being the head
+  var redTile3Positions=new LinkedList();
+  var redTile3=(function() {
+    ctx.fillStyle='red';
+    ctx.beginPath();
+    ctx.arc(153,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the red tiles have been to
+  //with the default position (base) being the head
+  var redTile4Positions=new LinkedList();
+  var redTile4=(function() {
+    ctx.fillStyle='red';
+    ctx.beginPath();
+    ctx.arc(153,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+
+  //yellow tiles
+  //linked list to store postions the yellow tiles have been to
+  //with the default position (base) being the head
+  var yellowTile1Positions=new LinkedList();
+  var yellowTile1=(function() {
+    ctx.fillStyle='yellow';
+    ctx.beginPath();
+    ctx.arc(447,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the yellow tiles have been to
+  //with the default position (base) being the head
+  var yellowTile2Positions=new LinkedList();
+  var yellowTile2=(function() {
+    ctx.fillStyle='yellow';
+    ctx.beginPath();
+    ctx.arc(513,87,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the yellow tiles have been to
+  //with the default position (base) being the head
+  var yellowTile3Positions=new LinkedList();
+  var yellowTile3=(function() {
+    ctx.fillStyle='yellow';
+    ctx.beginPath();
+    ctx.arc(447,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the yellow tiles have been to
+  //with the default position (base) being the head
+  var yellowTile4Positions=new LinkedList();
+  var yellowTile4=(function() {
+    ctx.fillStyle='yellow';
+    ctx.beginPath();
+    ctx.arc(513,153,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+
+  //blue tiles
+  //figured it out
+  //linked list to store postions the blue tiles have been to
+  //with the default position (base) being the head
+  var blueTile1Positions=new LinkedList();
+  var blueTile1=(function() {
+    ctx.fillStyle='blue';
+    ctx.beginPath();
+    ctx.arc(447,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the blue tiles have been to
+  //with the default position (base) being the head
+  var blueTile2Positions=new LinkedList();
+  var blueTile2=(function() {
+    ctx.fillStyle='blue';
+    ctx.beginPath();
+    ctx.arc(447,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the blue tiles have been to
+  //with the default position (base) being the head
+  var blueTile3Positions=new LinkedList();
+  var blueTile3=(function() {
+    ctx.fillStyle='blue';
+    ctx.beginPath();
+    ctx.arc(513,447,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+  //linked list to store postions the blue tiles have been to
+  //with the default position (base) being the head
+  var blueTile4Positions=new LinkedList();
+  var blueTile4=(function() {
+    ctx.fillStyle='blue';
+    ctx.beginPath();
+    ctx.arc(513,513,20,0,2*Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }());
+
+
+})();

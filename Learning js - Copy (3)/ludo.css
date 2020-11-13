@@ -1,0 +1,315 @@
+html{
+  margin: 0;
+  padding: 0;
+  height: 0;
+}
+body{
+  margin: 0;
+  /* margin: 20px 250px; */
+  background-color: black;
+  /* background-image: url(Images/Gloomy.jpg); */
+  /* overflow: hidden; */
+}
+
+
+/* Text Styles */
+h1{
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+  /* font-weight: 400; */
+  color: black;
+  text-align: right;
+}
+h2{
+  font-family: 'Acme', sans-serif;
+  color: white;
+  font-size: 40px;
+}
+h3{
+  font-size: 20px;
+}
+h3.setLabel{
+  color: white;
+  font-size: 20px;
+}
+#title{
+  background-image: url(Images/woodBg.jpg);
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Alfa Slab One', cursive;
+  text-align: center;
+  font-size: 60px;
+  font-weight: 400;
+  /* color: red; */
+  -webkit-font-smoothing: antialiased;
+}
+#winner{
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+#errorMsg,#sgErrorMsg{
+  font-family: 'Acme', sans-serif;
+  color: red;
+  font-size: 20px;
+}
+
+/* Canvas style */
+#boardCanvas{
+  background-color: #c08b5f;
+}
+
+
+
+/* Div Styles */
+#ludo_game{
+  width: 900px;
+  /* margin: 0 auto; */
+  position: absolute;
+  z-index: 1;
+  /* visibility: hidden; */
+}
+#menu{
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px 10px;
+  position: absolute;
+  z-index: 5;
+  visibility: visible;
+}
+
+#instructions{
+  width: 70%;
+  /* height: 100px; */
+  background-color: #c08b5f;
+  margin: 0 auto;
+  padding: 10px 10px;
+  position: absolute;
+  z-index: 4;
+  /* visibility: visible; */
+  visibility:hidden;
+}
+.instr1{
+  float: left;
+  width: 50%;
+}
+.instr2{
+  float:right;
+  width: 50%;
+}
+
+#demo{
+  visibility:hidden;
+  position: absolute;
+  z-index: 3;
+}
+#savedGames{
+  visibility:hidden;
+  position: absolute;
+  z-index: 2;
+}
+#settings{
+  width: 400px;
+  /* height: 100px; */
+  background-color: #c08b5f;
+  margin: 0 auto;
+  padding: 10px 10px;
+  visibility:hidden;
+  position: absolute;
+  z-index: 6;
+}
+#saveGameBox{
+  width: 400px;
+  /* height: 100px; */
+  background-color: #c08b5f;
+  margin: 0 auto;
+  padding: 10px 10px;
+  visibility:hidden;
+  position: absolute;
+  z-index: 7;
+}
+#exitGameBox{
+  width: 400px;
+  /* height: 100px; */
+  background-color: #c08b5f;
+  margin: 0 auto;
+  padding: 10px 10px;
+  visibility:hidden;
+  position: absolute;
+  z-index: 8;
+}
+
+.players{
+  width: 25%;
+  /* height: 100%; */
+  float: right;
+  background-color: #c08b5f;
+}
+.players_panel{
+  padding: 30px;
+}
+.dice_panel{
+  padding: 20px;
+}
+.button_container{
+  width: 100%;
+  text-align: center;
+}
+.menuOptions{
+  width: 100%;
+  text-align: center;
+}
+.winner{
+  width: 20%;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  z-index: 2;
+  visibility: hidden;
+  background-image: url(Images/woodBg.jpg);
+}
+
+/* Button Styles */
+#startGameButton,#instructionsButton,#demoButton,#savedGamesButton,#settingsButton{
+  border: none;
+  width: 100%;
+  margin: 20px 0;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px;
+  background-image: url(Images/woodBg.jpg);
+  /* position: absolute; */
+}
+#startGameButton:hover,#instructionsButton:hover,#demoButton:hover,#savedGamesButton:hover,#mainMenu:hover,#settingsButton:hover{
+  border-width: thick;
+  border-color: white;
+  border:solid;
+}
+#diceRoll,#exitGame,#saveGame,#set,#exitGameOption,#save,#resumeGameFromExit{
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: #592e1d;
+}
+#diceRoll:hover,#exitGame:hover,#saveGame:hover,#set:hover,#resumeGame:hover,#exitGameOption:hover,#save:hover{
+  border-width: thick;
+  border-color: white;
+  border:solid;
+}
+#mainMenu,#resumeGame,#sgExitGameOption{
+  border: none;
+  font-family: 'Acme', sans-serif;
+  /* width: 100%; */
+  margin: 20px 0;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px;
+  background-image: url(Images/woodBg.jpg);
+  /* position: absolute; */
+}
+#diceRoll{
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  background-color: #592e1d;
+}
+#exitGame,#saveGame{
+  margin: 10px;
+}
+
+/* Shape Styles */
+#rTile,#gTile,#yTile,#bTile{
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  float: right;
+}
+#rTile{
+  background-color: red;
+  visibility: hidden;
+  float: left;
+}
+#gTile{
+  background-color: green;
+  visibility: hidden;
+  float: left;
+}
+#yTile{
+  background-color: yellow;
+  visibility: hidden;
+  float: left;
+}
+#bTile{
+  background-color: blue;
+  visibility: hidden;
+  float: left;
+}
+
+
+
+/* Die Styles */
+.firstDie{
+  float: left;
+  padding: 5px;
+}
+.secondDie{
+  float: right;
+  padding: 5px;
+}
+img{
+  width: 70px;
+  height: 70px;
+}
+
+
+/* Input Style */
+#diceRollTime{
+  background-color: #592e1d;
+  color: #999999;
+  border: none;
+  width: 90%;
+  opacity: 0.5;
+  padding: 10px 0px 10px 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+#gameName{
+  background-color: #592e1d;
+  color: #999999;
+  border: none;
+  width: 90%;
+  opacity: 0.5;
+  padding: 10px 0px 10px 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+#red{
+
+}
+#green{
+
+}
+#yellow{
+
+}
+#blue{
+
+}
